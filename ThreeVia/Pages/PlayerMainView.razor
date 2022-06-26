@@ -1,0 +1,34 @@
+﻿@page "/play"
+@using ThreeVia.Logic
+@using static ThreeVia.Logic.EnableSubmissionService
+@inject EnableSubmissionService enableSubmissionService
+
+<h3>PlayerMainView</h3>
+@if (canSubmit)
+{
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="player_name">Player Name</label>
+				<input type="text" class="form-control" id="player_name" name="player_name" placeholder="Player Name" value="{{ $player->player_name }}">
+			</div>
+		</div>
+	</div>
+}
+
+@code {
+	public bool canSubmit { get; set; }
+	protected override Task OnInitializedAsync()
+	{
+		enableSubmissionService.EnableSubmission += (o, e) =>
+		{
+			this.InvokeAsync(() =>
+			{
+				canSubmit = e.Enable; this.StateHasChanged();
+			}
+			);
+		};
+		return base.OnInitializedAsync();
+	}
+
+	}

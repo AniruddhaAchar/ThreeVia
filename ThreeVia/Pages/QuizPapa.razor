@@ -1,0 +1,20 @@
+﻿@page "/quizpapa"
+@using ThreeVia.Logic
+@using static ThreeVia.Logic.EnableSubmissionService
+@inject EnableSubmissionService enableSubmissionService
+
+<h3>Quiz Papa</h3>
+<EditForm Model="model">
+	<InputText id="quizpapa-input" @bind-Value = "data"/>
+</EditForm>
+<h4>@data</h4>
+<button @onclick="EnableSubmission" class="btn btn-primary">Submit</button>
+@code {
+	class EditModel{}
+	EditModel model = new EditModel();
+	string data;
+	private void EnableSubmission()
+	{
+		enableSubmissionService.OnEnableSubmission(new EnableSubmissionEventArgs(true));
+	}
+}
