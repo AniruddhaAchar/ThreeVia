@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using ThreeVia.Data;
+using ThreeVia.Model;
 using ThreeVia.Logic;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,0 +1,40 @@
+﻿@page "/builder"
+@using ThreeVia.Model.Game;
+
+<h3>Build a trivia tournament</h3>
+
+<EditForm Model="tournament">
+	<label>Number of rounds</label>
+	<InputNumber Label="Number of Rounds" Name="NumberOfRounds" @bind-Value="numberOfRounds"/>
+	<button @onclick="showRounds">Show round builder</button>
+</EditForm>
+
+<button>Save tournamnet</button>
+
+@if (showRoundEditor)
+{
+	for(int i = 0; i< numberOfRounds; i++)
+	{
+		<RoundBuilder RoundNumber="i+1" Round="tournament.Rounds[i]"/>
+	}
+}
+
+@code {
+	Tournament tournament = new Tournament();
+	int numberOfRounds;
+	bool showRoundEditor = false;
+
+	void showRounds()
+	{
+		showRoundEditor = true;
+		for (int i = 0; i < numberOfRounds; i++)
+		{
+			tournament.Rounds.Add(new Round());
+		}
+	}
+
+	void saveTournament()
+	{
+		// save tournament
+	}
+}

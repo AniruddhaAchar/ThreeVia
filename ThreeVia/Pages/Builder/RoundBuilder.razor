@@ -1,0 +1,47 @@
+﻿@using ThreeVia.Model.Game
+@using ThreeVia.Model.Questions
+
+<h3>Round @RoundNumber</h3>
+
+<EditForm Model="Round">
+	<label>Round name</label>
+	<InputText Label="Round Name" Name="Name" @bind-Value="Round.Name"/>
+	<label>Round instructions</label>
+	<InputTextArea Label="Round Instructions" Name="Instructions" @bind-Value="Round.Instructions" />
+	<label>Number of questions</label>
+	<InputNumber Name="Number of questions" Label="Number of questions" @bind-Value=@NumberOfQuestions/>
+	<button @onclick="showQuestions">Show round builder</button>
+</EditForm>
+
+@if(showQ)
+{
+	for (var i = 0; i < NumberOfQuestions; i++)
+	{
+		<QuestionBuilder QuestionNumber="i+1" RoundNumber="RoundNumber" QuestionToBuild="@Round.Questions[i]"/>
+	}
+}
+
+@code {
+	[Parameter]
+	public  Round Round { get; set; }
+	[Parameter]
+	public int RoundNumber { get; set; }
+
+	public int NumberOfQuestions { get; set; }
+
+	bool showQ = false;
+
+	public void showQuestions()
+	{
+		if (NumberOfQuestions <= 0)
+		{
+			showQ = false;
+			return;
+		}
+		for (var i = 0; i < NumberOfQuestions; i++)
+		{
+			Round.Questions.Add(new Question());
+		}
+		showQ = true;
+	}
+}

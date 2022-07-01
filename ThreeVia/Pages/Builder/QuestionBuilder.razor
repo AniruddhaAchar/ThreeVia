@@ -1,0 +1,41 @@
+﻿@using ThreeVia.Model.Questions
+@using ThreeVia.Model.Questions.Answers
+
+<h4>Round @RoundNumber, Question @QuestionNumber</h4>
+
+<EditForm Model="QuestionToBuild">
+	<div class="form-group">
+		<label for="Question">Question</label>
+		<InputText @bind-Value="QuestionToBuild.Content" />
+		<label for="Question Type">Question Type</label>
+		<InputSelect @bind-Value="QuestionToBuild.QuestionType">
+			@foreach (QuestionType type in Enum.GetValues(typeof(QuestionType)))
+			{
+				<option value="@type">@type</option>
+			}
+
+		</InputSelect>
+		
+		<label for="AnswerType">Answer Type</label>
+
+		<InputSelect @bind-Value="QuestionToBuild.AnswerType">
+			@foreach (AnswerType type in Enum.GetValues(typeof(AnswerType)))
+			{
+				<option value="@type">@type</option>
+			}
+
+		</InputSelect>
+		
+	</div>
+</EditForm>
+
+
+@code {
+	[Parameter]
+	public int QuestionNumber { get; set; }
+	[Parameter]
+	public int RoundNumber { get; set; }
+	[Parameter]
+	public Question QuestionToBuild { get; set; }
+
+}
