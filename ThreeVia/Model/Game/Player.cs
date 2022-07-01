@@ -1,4 +1,4 @@
-﻿namespace ThreeVia.Data.Game
+﻿namespace ThreeVia.Model.Game
 {
     public class Player
     {

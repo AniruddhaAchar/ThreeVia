@@ -1,6 +1,6 @@
-﻿using ThreeVia.Data.Questions;
+﻿using ThreeVia.Model.Questions;
 
-namespace ThreeVia.Data.Game
+namespace ThreeVia.Model.Game
 {
     public class Stats
     {
@@ -26,7 +26,7 @@ namespace ThreeVia.Data.Game
                 {
                     if (correctAnswer.Value)
                     {
-                        tempScore += correctAnswer.Key.GetPoints();
+                        tempScore += correctAnswer.Key.Points;
                     }
                 }
                 scoreBoard.Add(playerStats.Player, tempScore);
@@ -34,7 +34,7 @@ namespace ThreeVia.Data.Game
             return scoreBoard;
         }
 
-        public double GetPercentageCorrect(IQuestion question)
+        public double GetPercentageCorrect(Question question)
         {
             var correctAnswers = 0;
             var totalAnswers = 0;
@@ -56,14 +56,14 @@ namespace ThreeVia.Data.Game
     public class PlayerStats
     {
         public Player Player { get; set; }
-        public Dictionary<IQuestion, bool> Answers { get; set; }
+        public Dictionary<Question, bool> Answers { get; set; }
 
         public PlayerStats()
         {
-            Answers = new Dictionary<IQuestion, bool>();
+            Answers = new Dictionary<Question, bool>();
         }
 
-        public void AddAnswer(IQuestion question, bool isCorrect)
+        public void AddAnswer(Question question, bool isCorrect)
         {
             Answers.Add(question, isCorrect);
         }

@@ -1,4 +1,4 @@
-﻿namespace ThreeVia.Data.Questions.Answers
+﻿namespace ThreeVia.Model.Questions.Answers
 {
     public class FreeFormAnswer : IAnswer
     {

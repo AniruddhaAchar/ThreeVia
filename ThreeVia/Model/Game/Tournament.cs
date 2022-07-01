@@ -1,6 +1,6 @@
-﻿using ThreeVia.Data.Questions;
+﻿using ThreeVia.Model.Questions;
 
-namespace ThreeVia.Data.Game
+namespace ThreeVia.Model.Game
 {
     public class Tournament
     {

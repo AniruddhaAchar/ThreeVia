@@ -1,20 +1,26 @@
-﻿using ThreeVia.Data.Questions;
-using ThreeVia.Data.Questions.Answers;
+﻿using ThreeVia.Model.Questions;
+using ThreeVia.Model.Questions.Answers;
 
-namespace ThreeVia.Data.Game
+namespace ThreeVia.Model.Game
 {
     public class Round
     {
         public string Name { get; set; }
         public string Instructions { get; set; }
 
-        public List<IQuestion> Questions { get; set; }
+        public List<Question> Questions { get; set; }
 
         public Dictionary<Player, IAnswer> SubmittedAnswers { get; set; }
 
         public bool IsVisible { get; set; }
 
         public bool CanSubmit { get; set; }
+
+        public Round()
+        {
+            Questions = new List<Question>();
+            SubmittedAnswers = new Dictionary<Player, IAnswer>();
+        }
 
         //add new submissions
         public void AddSubmission(Player player, IAnswer answer)
@@ -42,7 +48,7 @@ namespace ThreeVia.Data.Game
         }
         
         //add question
-        public void AddQuestion(IQuestion question)
+        public void AddQuestion(Question question)
         {
             Questions.Add(question);
         }
